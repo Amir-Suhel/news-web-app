@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+    <a routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </a>
+    <span>News App</span>
+    <span class="example-spacer"></span>
+    <button  mat-raised-button color="primary" routerLink="/">
+        Home
+    </button>
+    <button *ngIf="!isLoggedIn()" mat-raised-button color="primary" routerLink="/login">
+        Login
+    </button>
+    <button *ngIf="!isLoggedIn()" mat-raised-button color="primary" routerLink="/signup">
+        Sign Up
+    </button>
+    <button *ngIf="isLoggedIn()" mat-raised-button color="warn" (click)="logout()" routerLink="">
+        Logout
+    </button>
+</mat-toolbar>
+
+<mat-toolbar color="primary" *ngIf="isLoggedIn()">
+    <button mat-raised-button color="primary" routerLink="/news">News</button>
+    <button mat-raised-button color="primary" routerLink="/wishlist">Wishlist</button>
+    <input #search type="search" placeholder="Search by keyword">
+    <button mat-raised-button color="primary" (click)="getNewsByKeyWord(search.value)">
+      Search
+    </button>
+</mat-toolbar>

@@ -1,0 +1,36 @@
+
+<div class="container-fluid mt-3">
+    <div *ngIf="!isEmpty">
+        <h2 class="text-center">Wishlist is empty.Add articles...</h2>
+    </div>
+
+    <div *ngIf="isEmpty" class="row">
+        <div *ngFor="let article of favourite" class="col-lg-3">
+         <div class="box">
+            <img src="{{article.urlToImage}}" alt="img" width="100%">
+            <h5 class="mt-3 mb-3">{{article.title}}</h5>
+            <a class="btn btn-dark btn-sm" target="_blank" href="{{article.url}}">Read More</a>
+            <!-- <button *ngIf="isLoggedIn()" mat-raised-button color="warn" (click)="addToWishlist(nd.arti)">
+              Add Favourite
+          </button> -->
+        <!-- </button> -->
+        <!-- <button mat-raised-button color="warn" (click)="removeArticleFromWishlist(article.userId, article.id)">Remove</button> -->
+        <button type="button" class="btn btn-danger btn-sm" (click)="removeArticleFromWishlist(article.userId, article.id)">
+            Remove
+        </button>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row">
+    <div *ngFor="let nd of topHeadLinesData" class="col-lg-3">
+        <div class="box">
+            <img src="{{nd.urlToImage}}" width="100%">
+            <h5 class="mt-3 mb-3">{{nd.title}}</h5>
+            <a class="btn btn-dark btn-sm" target="_blank" href="{{nd.url}}">Read More</a>
+            <button type="button" class="btn btn-danger btn-sm" (click)="addToWishlist(nd)">
+                Add Favourite
+            </button>
+
+        </div>
+    </div> -->

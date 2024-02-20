@@ -1,0 +1,15 @@
+<div class="container-fluid mt-3">
+    <!-- <h4>Top News <marquee>For more Updates subscribe our website</marquee></h4> -->
+    <div class="row">
+        <div *ngFor="let nd of topHeadLinesData" class="col-lg-3">
+            <div class="box">
+                <img src="{{nd.urlToImage}}" alt="img" width="100%">
+                <h5 class="mt-3 mb-3">{{nd.title}}</h5>
+                <a class="btn btn-dark btn-sm" target="_blank" href="{{nd.url}}">Read More</a>
+                <button type="button" class="btn btn-danger btn-sm" (click)="addToWishlist(nd)">
+                    Add Favourite
+                </button>
+
+            </div>
+        </div>
+    </div>
