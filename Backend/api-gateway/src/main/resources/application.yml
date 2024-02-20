@@ -1,0 +1,54 @@
+server:
+ port: 9090
+  
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+      
+spring:
+  application:
+    name: API-GATEWAY  
+    
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+         '[/**]':
+           allowedOrigins: "*"
+           allowedMethods: "*"
+           allowedHeaders: "*"
+              
+      routes:
+      
+      - id: AUTHENTICATION-SERVICE
+        uri: http://localhost:8082
+        predicates:
+        - Path=/login 
+      
+      - id: USER-PROFILE-SERVICE
+        uri: http://localhost:8081
+        predicates:
+        - Path=/api/v1/users 
+         
+      - id: NEWS-SERVICE
+        uri: http://localhost:8083
+        predicates:
+        - Path=/api/v1/news/**
+        
+      - id: WISHLIST-SERVICE
+        uri: http://localhost:8084
+        predicates:
+        - Path=/api/v1/articles/**
+        
+        
+
+
+       
+    
